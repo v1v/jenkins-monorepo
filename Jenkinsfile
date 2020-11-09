@@ -18,17 +18,15 @@ pipeline {
   stages {
     stage('Build&Test') {
       steps {
-        dir("${BASE_DIR}"){
-          script {
-            def mapParallelTasks = [:]
-            def content = readYaml(file: 'Jenkinsfile.yml')
-            content['projects'].each { projectName ->
-              generateStages(project: projectName).each { k,v ->
-                mapParallelTasks["${k}"] = v
-              }
+        script {
+          def mapParallelTasks = [:]
+          def content = readYaml(file: 'Jenkinsfile.yml')
+          content['projects'].each { projectName ->
+            generateStages(project: projectName).each { k,v ->
+              mapParallelTasks["${k}"] = v
             }
-            parallel(mapParallelTasks)
           }
+          parallel(mapParallelTasks)
         }
       }
     }
