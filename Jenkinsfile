@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-@Library('library@current') _
+@Library('shared-library@current') _
 
 pipeline {
   agent { label 'linux && immutable' }
