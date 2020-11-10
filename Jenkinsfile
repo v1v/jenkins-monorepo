@@ -82,11 +82,7 @@ def buildRun(Map args = [:]) {
   def directory = args.get('directory', '')
   node(args.label) {
     echo 'Prepare some context for running the build'
-    if(isUnix()) {
-      sh(label: "${args.id?.trim() ? args.id : env.STAGE_NAME} - ${command}", script: "${command}")
-    } else {
-      bat(label: "${args.id?.trim() ? args.id : env.STAGE_NAME} - ${command}", script: "${command}")
-    }
+    cmd(label: "${args.id?.trim() ? args.id : env.STAGE_NAME} - ${command}", script: "${command}")
   }
 }
 
