@@ -43,7 +43,7 @@ def generateStages(Map args = [:]) {
   def fileName = "${projectName}/Jenkinsfile.yml"
   if (fileExists(fileName)) {
     def content = readYaml(file: fileName)
-    if (stagesProject(project: projectName, content: content?.when)) {
+    if (whenProject(project: projectName, content: content?.when)) {
       mapParallelStages = stagesProject(project: projectName, content: content, function: new RunCommand(steps: this))
     }
   } else {
@@ -62,7 +62,7 @@ def generateStages(Map args = [:]) {
 *    - content -> the specific stage data in the <project>/Jenkinsfile.yml
 *    - context -> the name of the stage, normally <project>-<stage>(-<platform>)?
 */
-class RunCommand extends Function {
+class RunCommand extends mono.Function {
   public RunCommand(Map args = [:]){
     super(args)
   }
