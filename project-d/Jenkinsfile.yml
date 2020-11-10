@@ -13,3 +13,7 @@ stages:
         build: "echo 'build-foo'"
     test:
         test: "echo 'test-bar'"
+    macos:
+        build: "echo 'build'"
+        platforms:             ## override default label in this specific stage.
+          - "macosx"
