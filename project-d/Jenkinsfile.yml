@@ -13,3 +13,5 @@ stages:
         build: "echo 'build-foo'"
     test:
         test: "echo 'test-bar'"
+    another:
+        test: "echo 'another-bar'"
